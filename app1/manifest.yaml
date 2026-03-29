@@ -21,8 +21,8 @@ spec:
       - name: frontend
         image: chaitanyaj293/app1:v1
 ---
-apiVersion: v1
 kind: Service
+apiVersion: v1
 metadata:
   name: apps1
 spec:
@@ -41,6 +41,7 @@ metadata:
     name: echoserver
     namespace: echoserver
     annotations:
+        #kubernetes.io/ingress.class: alb , it is deprecated
         alb.ingress.kubernetes.io/scheme: internet-facing
         alb.ingress.kubernetes.io/target-type: ip
         alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:596059882666:certificate/9cce9d46-4fcf-4dda-be20-4481a29004fd
