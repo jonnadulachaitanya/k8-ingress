@@ -57,6 +57,6 @@ spec:
         path: "/"
         backend:
           service:
-            name: service1
+            name: app1
             port:
               number: 80
