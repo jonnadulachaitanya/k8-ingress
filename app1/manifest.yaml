@@ -45,7 +45,7 @@ metadata:
         alb.ingress.kubernetes.io/scheme: internet-facing
         alb.ingress.kubernetes.io/target-type: ip
         alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:596059882666:certificate/9cce9d46-4fcf-4dda-be20-4481a29004fd
-        alb.ingress.kubernetes.io/listen-ports: '["HTTPS": 443}]'
+        alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS": 443}]'
         alb.ingress.kubernetes.io/tags: Environment=dev,Team=test
         alb.ingress.kubernetes.io/group.name: expense
 spec:
