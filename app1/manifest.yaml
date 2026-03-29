@@ -58,5 +58,6 @@ spec:
           backend:
             service:
               name: service1
-              port: app1
+              port:
                 number: 80
+]
