@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app2
+  labels:
+    name: app2
+    tier: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: app2
+      tier: frontend
+  template:
+    metadata:
+      labels:
+        name: app2
+        tier: frontend
+    spec:
+      containers:
+      - name: frontend
+        image: chaitanyaj293/app2:v1
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: app2
+spec:
+  selector:
+    name: app2
+    tier: frontend
+  ports:
+  - name: nginx-svc-port
+    protocol: TCP
+    port: 80
+    targetPort: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: app2
+  annotations:
+    #kubernetes.io/ingress.class: alb , it is deprecated
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:596059882666:certificate/9cce9d46-4fcf-4dda-be20-4481a29004fd
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS": 443}]'
+    alb.ingress.kubernetes.io/tags: Environment=dev,Team=test
+    alb.ingress.kubernetes.io/group.name: expense
+spec:
+  ingressClassName: alb
+  rules:
+  - host: "app2.chaitanyaproject.shop"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: app2
+            port:
+              number: 80
