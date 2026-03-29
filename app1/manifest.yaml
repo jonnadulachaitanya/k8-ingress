@@ -48,14 +48,15 @@ metadata:
     alb.ingress.kubernetes.io/tags: Environment=dev,Team=test
     alb.ingress.kubernetes.io/group.name: expense
 spec:
-    rules:
-    - host: "app1.chaitanyaproject.shop"
-      http:
-        paths:
-        - pathType: Prefix
-          path: "/"
-          backend:
-            service:
-              name: service1
-              port:
-                number: 80
+  ingressClassName: alb
+  rules:
+  - host: "app1.chaitanyaproject.shop"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: service1
+            port:
+              number: 80
