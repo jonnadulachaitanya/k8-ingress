@@ -24,10 +24,10 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: apps1
+  name: app1
 spec:
   selector:
-    name: apps1
+    name: app1
     tier: frontend
   ports:
   - name: nginx-svc-port
